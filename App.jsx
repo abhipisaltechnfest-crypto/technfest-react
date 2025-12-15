@@ -1,6 +1,7 @@
 
 
 
+
 import { useState } from "react";
 import MainLayout from "./layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
@@ -24,13 +25,37 @@ function App() {
   };
 
   return (
-    <MainLayout onSelect={setSelectedPage}>
+    <MainLayout selectedPage={selectedPage} setSelectedPage={setSelectedPage}>
       {renderPage()}
     </MainLayout>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
