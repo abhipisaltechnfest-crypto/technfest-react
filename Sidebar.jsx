@@ -1,39 +1,32 @@
 
 
+
 import React from "react";
+import Button from "./Button";
 
-export default function Sidebar({ onSelect }) {
+const Sidebar = ({ selectedPage, setSelectedPage }) => {
   return (
-    <div className="w-60 bg-white h-screen shadow-md  pt-6 px-4">
-      <h2 className="text-xl font-bold mb-6 text-gray-700">Menu Items:</h2>
-
-      <nav className="flex flex-col gap-4">
-        <button
-          onClick={() => onSelect("dashboard")}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
-        >
-          Dashboard
-        </button>
-
-        <button
-          onClick={() => onSelect("leads")}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
-        >
-          Leads
-        </button>
-
-        <button
-          onClick={() => onSelect("settings")}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
-        >
-          Settings
-        </button>
-      </nav>
+    <div className="w-64 bg-white p-4 shadow space-y-2">
+      <Button
+        label="Dashboard"
+        type={selectedPage === "dashboard" ? "primary" : "secondary"}
+        onClick={() => setSelectedPage("dashboard")}
+      />
+      <Button
+        label="Leads"
+        type={selectedPage === "leads" ? "primary" : "secondary"}
+        onClick={() => setSelectedPage("leads")}
+      />
+      <Button
+        label="Settings"
+        type={selectedPage === "settings" ? "primary" : "secondary"}
+        onClick={() => setSelectedPage("settings")}
+      />
     </div>
   );
-}
+};
 
-
+export default Sidebar;
 
 
 
