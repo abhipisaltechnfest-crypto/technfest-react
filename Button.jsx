@@ -2,6 +2,7 @@
 
 
 
+
 import React from "react";
 
 export default function Button({ label, type = "primary", onClick }) {
@@ -20,5 +21,3 @@ export default function Button({ label, type = "primary", onClick }) {
     </button>
   );
 }
-
-
