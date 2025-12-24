@@ -12,11 +12,12 @@ import Textarea from "../components/Textarea";
 
 // Initial leads
 const initialLeads = [
-  { id: 1, name: "Rahul", mobile: "9999999999", status: "New" },
-  { id: 2, name: "Amit", mobile: "8888888888", status: "Hot" },
-  { id: 3, name: "Sneha", mobile: "7777777777", status: "Closed" },
-  { id: 4, name: "Priya", mobile: "6666666666", status: "New" },
-  { id: 5, name: "Vikram", mobile: "5555555555", status: "Hot" },
+  { id: 1, name: "Rahul", mobile: "9999999999", status: "New", email: "rahul@example.com", city: "Delhi", source: "whatsapp", },
+  { id: 2, name: "Amit", mobile: "8888888888", status: "Hot", email: "amit@example.com", city: "Mumbai", source: "whatsapp", },
+  { id: 3, name: "Sneha", mobile: "7777777777", status: "Closed", email: "sneha@example.com", city: "Bangalore", source: "instagram", },
+  { id: 4, name: "Priya", mobile: "6666666666", status: "New", email: "priya@example.com", city: "Hyderabad", source: "walk-in", },
+  { id: 5, name: "Vikram", mobile: "5555555555", status: "Hot", email: "vikram@example.com", city: "Chennai", source: "walk-in", },
+  { id: 6, name: "Ravi", mobile: "4444444444", status: "Closed", email: "ravi@example.com", city: "Hyderabad", source: "Referance", },
 ];
  
 // ✅ STATUS COLORS
@@ -152,7 +153,7 @@ const Leads = () => {
 
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
+    <div className="p-4 bg-gray-50 min-h-screen bg-gradient-to-br via-purple-90 to-cyan-60">
       <h1 className="text-2xl font-bold mb-4">Leads</h1>
 
       <button
@@ -161,13 +162,14 @@ const Leads = () => {
       >
         + Add Lead
       </button>
-
+<div className="flex gap-3">
       <input
         placeholder="Search by name or mobile..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="border p-2 rounded w-full md:w-1/2 mb-4"
       />
+
 
       <select
         value={statusFilter}
@@ -178,7 +180,7 @@ const Leads = () => {
         <option>New</option>
         <option>Hot</option>
         <option>Closed</option>
-      </select>
+      </select></div>
 
       {/* ✅ Lead Count Summary UI */}
 
@@ -205,16 +207,12 @@ const Leads = () => {
     <button
       type="button"
       onClick={() => setStatusFilter("All")}
-      className="text-sm cursor-pointer text-blue-600 bg-white border-2 border-blue-300 px-2 py-1 rounded hover:bg-red-50 hover:text-red-700 hover:border-red-300"
+      className="text-sm cursor-pointer text-blue-600 px-2 py-1 border-2 border-blue-300 rounded hover:bg-red-50 hover:text-red-700 hover:border-red-300"
     >
       Clear
     </button>
   </div>
 )}
-
-
-
-
 
       {successMsg && (
         <div className="text-green-600 bg-green-100 px-3 py-2 rounded mb-3">
@@ -225,7 +223,7 @@ const Leads = () => {
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-4 rounded shadow mb-6 grid gap-4 md:grid-cols-2"
+          className="bg-white p-4 rounded-2xl border-2 border-gray-300 hover:shadow-2xl transition mb-6 grid gap-4 md:grid-cols-2 "
         >
           <div className="flex flex-col">
             <Input
@@ -294,6 +292,16 @@ const Leads = () => {
             />
           </div>
 
+          <div className="flex flex-col md:col-span-2 lg:col-span-2 xl:col-span-2">
+            <Input
+              label="Notes"
+              name="notes"
+              value={form.notes}
+              onChange={handleChange}
+              error={errors.notes}
+            />
+          </div>
+
           <button
             type="submit"
             className="bg-green-600 text-white px-4 py-2 rounded md:col-span-2"
@@ -306,7 +314,7 @@ const Leads = () => {
       {/* ✅ LEADS CARDS? */}
       {/* 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
 
         {filteredLeads.length === 0 && (
 
@@ -322,7 +330,7 @@ const Leads = () => {
 
   {selectedLead && (
   <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50">
-    <div className="bg-white p-6 rounded w-full max-w-md shadow-xl">
+    <div className="bg-white p-6 rounded-lg w-full max-w-md shadow-xl">
       <h2 className="text-xl font-bold mb-4 text-indigo-600">
         Lead Details
       </h2>
@@ -364,7 +372,8 @@ const Leads = () => {
         {filteredLeads.map((lead, index) => (
           <div
             key={lead.id}
-            className={`pointer-events-auto border-2 border-gray-300 p-4 rounded shadow
+            className={`pointer-events-auto border-2 border-gray-300 p-4 rounded-lg shadow bg-gradient-to-br from-blue-110 via-purple-100 to-blue-100 to-cyan-100
+   hover:shadow-2xl transition
         ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}
         hover:bg-gray-100`}
           >
@@ -396,7 +405,7 @@ const Leads = () => {
              <button
                 type="button"
                 onClick={() => setSelectedLead(lead)}
-                className="text-sm text-white bg-indigo-600 px-3 py-1 rounded cursor-pointer hover:bg-indigo-700"
+                className="text-sm text-white bg-blue-600 px-3 py-1 rounded cursor-pointer hover:bg-blue-700"
               >
                 View
               </button>
@@ -501,7 +510,7 @@ const Leads = () => {
           // <div className="fixed inset-0 bg-gray-800 bg-opacity-40 flex justify-center items-center">
                       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg w-full max-w-sm">
-              <h2 className="text-lg font-bold text-red-600 mb-4">
+              <h2 className="text-lg font-bold text-red-600 mb-4 rounded-lg">
                 Delete Lead
               </h2>
 
@@ -528,7 +537,7 @@ const Leads = () => {
                     );
                     setIsDeleteOpen(false);
                   }}
-                  className="bg-red-600 text-white px-4 py-2 rounded"
+                  className="bg-red-600 border-red-600 text-white px-4 py-2 rounded-lg"
                 >
                   Delete
                 </button>
